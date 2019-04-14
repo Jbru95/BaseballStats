@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballStateBackEnd", "BaseballStateBackEnd\BaseballStateBackEnd.csproj", "{F394C31F-03D0-4BC5-8B85-36D7CC5C1939}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseballStateBackEnd.Tests", "BaseballStateBackEnd.Tests\BaseballStateBackEnd.Tests.csproj", "{8AF67A34-1B89-457C-B3DB-D0BA9E1363E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F394C31F-03D0-4BC5-8B85-36D7CC5C1939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F394C31F-03D0-4BC5-8B85-36D7CC5C1939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F394C31F-03D0-4BC5-8B85-36D7CC5C1939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F394C31F-03D0-4BC5-8B85-36D7CC5C1939}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF67A34-1B89-457C-B3DB-D0BA9E1363E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF67A34-1B89-457C-B3DB-D0BA9E1363E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF67A34-1B89-457C-B3DB-D0BA9E1363E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF67A34-1B89-457C-B3DB-D0BA9E1363E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6C1B227-F225-440A-8406-84BD36F44589}
+	EndGlobalSection
+EndGlobal
