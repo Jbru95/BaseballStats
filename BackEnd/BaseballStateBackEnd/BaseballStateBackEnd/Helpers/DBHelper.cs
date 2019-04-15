@@ -18,7 +18,6 @@ namespace BaseballStateBackEnd.Helpers
         {
         }
 
-
         public List<Player> GetAllPlayersFromSP()
         {
             List<Player> playersList = null;
