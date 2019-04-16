@@ -22,14 +22,14 @@ namespace BaseballStateBackEnd.Controllers
             DBHelper helper = new DBHelper();
             List<Player> Players = new List<Player>();
 
-            Players.Add(new Player(1, "Mike Trout", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-            Players.Add(new Player(2, "Barry Bonds", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-            Players.Add(new Player(3, "Max Scherzer", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-            Players.Add(new Player(4, "Justin Verlander", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
-            Players.Add(new Player(5, "Steve Johnson", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+            //Players.Add(new Player(1, "Mike Trout", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+            //Players.Add(new Player(2, "Barry Bonds", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+            //Players.Add(new Player(3, "Max Scherzer", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+            //Players.Add(new Player(4, "Justin Verlander", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+            //Players.Add(new Player(5, "Steve Johnson", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 
-
-
+            Players = helper.GetAllPlayersFromSP();
+            
             // return helper.GetAllPlayersFromSP();
             return Players;
         }

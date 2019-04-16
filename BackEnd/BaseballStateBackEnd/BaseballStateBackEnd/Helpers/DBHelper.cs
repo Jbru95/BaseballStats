@@ -10,7 +10,7 @@ namespace BaseballStateBackEnd.Helpers
 {
     public class DBHelper
     {
-        private string ConnectionString = "Data Source=DESKTOP-RP5U7K6;" +
+        private string ConnectionString = "Data Source=DESKTOP-RP5U7K6\\SQLEXPRESS;" +
                         "Initial Catalog= ProjectDatabase;" +
                         "Integrated Security=SSPI;";
 
@@ -20,7 +20,7 @@ namespace BaseballStateBackEnd.Helpers
 
         public List<Player> GetAllPlayersFromSP()
         {
-            List<Player> playersList = null;
+            List<Player> playersList = new List<Player>();
 
             SqlConnection conn = null;
             SqlDataReader rdr = null;
@@ -37,11 +37,33 @@ namespace BaseballStateBackEnd.Helpers
 
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read()) {
-                    playersList.Add(new Player((int)rdr["ID"], rdr["PlayerName"].ToString(), rdr["PlayerDescription"].ToString(), rdr["Number"].ToString(), rdr["Position"].ToString(), (bool)rdr["IsPitcher"],
-                        (double)rdr["WAR"], (double)rdr["Average"], (int)rdr["Hits"], (int)rdr["Homeruns"],
-                        (int)rdr["Walks"], (double)rdr["OBP"], (double)rdr["Slug"], (double)rdr["OPS"], (double)rdr["ERA"], (double)rdr["OppAVG"], (double)rdr["KsPerNine"],
-                        (double)rdr["WalksPerNine"], (double)rdr["HomerunsPerNine"], (double)rdr["whip"])
-                    );
+                    Player player = new Player();
+                    player.ID = (int)rdr[0];
+                    player.PlayerName = rdr[1].ToString();
+                    player.PlayerDescription = rdr[2].ToString();
+                    player.Number = rdr[3].ToString();
+                    player.Position = rdr[4].ToString();
+                    player.IsPitcher = (bool)rdr[5];
+                    player.WAR = (double)rdr[6];
+                    player.Average = (double)rdr[7];
+                    player.Hits = (int)rdr[8];
+                    player.HomeRuns = (int)rdr[9];
+                    player.Walks = (int)rdr[10];
+                    player.OBP = (double)rdr[11];
+                    player.Slug = (double)rdr[12];
+                    player.OPS = (double)rdr[13];
+                    player.ERA = (double)rdr[14];
+                    //player.OppAVG = (double)rdr[15];
+                    //player.KsPerNine = (double)rdr[16];
+                    //player.WalksPerNine = (double)rdr[17];
+                    //player.HomerunsPerNine = (double)rdr[18];
+                    //player.Whip = (double)rdr[19];
+                    //playersList.Add(new Player((int)rdr[0], rdr[1].ToString(), rdr[2].ToString(), rdr[3].ToString(), rdr[4].ToString(), (bool)rdr[5],
+                    //    (double)rdr[6], (double)rdr[7], (int)rdr[8], (int)rdr[9],
+                    //    (int)rdr[10], (double)rdr[11], (double)rdr[12], (double)rdr[13], (double)rdr[14], (double)rdr[15], (double)rdr[16],
+                    //    (double)rdr[17], (double)rdr[18], (double)rdr[19])
+                    //);
+                    playersList.Add(player);
                 }
             }
             catch (Exception e)
@@ -50,6 +72,7 @@ namespace BaseballStateBackEnd.Helpers
             }
             finally
             {
+                rdr.Close();
                 conn.Close();
             }
             return playersList;

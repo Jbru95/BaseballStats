@@ -48,3 +48,4 @@ C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStat
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd.Tests\obj\Debug\BaseballStateBackEnd.Tests.csproj.CopyComplete
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd.Tests\obj\Debug\BaseballStateBackEnd.Tests.dll
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd.Tests\obj\Debug\BaseballStateBackEnd.Tests.pdb
+C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd.Tests\bin\Debug\Newtonsoft.Json.xml

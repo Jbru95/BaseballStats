@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -31,6 +32,10 @@ namespace BaseballStateBackEnd.Models
         public double HomerunsPerNine { get; set; }
         public double Whip { get; set; }
 
+        public Player()
+        {
+
+        }
 
         public Player(int id, string playerName, string playerDescription, string number, string position, bool isPitcher, double war, double average, int hits, int homeruns, int walks, double obp, double slug, double ops,
             double era, double oppavg, double kspernine, double walkspernine, double homerunspernine, double whip)
@@ -55,6 +60,30 @@ namespace BaseballStateBackEnd.Models
             WalksPerNine = walkspernine;
             HomerunsPerNine = homerunspernine;
             Whip = whip;
+        }
+
+        public Player(DataRow row)
+        {
+            ID = (int)row[0];
+            PlayerName = row[1].ToString();
+            PlayerDescription = row[2].ToString();
+            Number = row[3].ToString();
+            Position = row[4].ToString();
+            IsPitcher = (bool)row[5];
+            WAR = (double)row[6];
+            Average = (double)row[7];
+            Hits = (int)row[8];
+            HomeRuns = (int)row[9];
+            Walks = (int)row[10];
+            OBP = (double)row[11];
+            Slug = (double)row[12];
+            OPS = (double)row[13];
+            ERA = (double)row[14];
+            OppAVG = (double)row[15];
+            KsPerNine = (double)row[16];
+            WalksPerNine = (double)row[17];
+            HomerunsPerNine = (double)row[18];
+            Whip = (double)row[19];
         }
     }
 }
