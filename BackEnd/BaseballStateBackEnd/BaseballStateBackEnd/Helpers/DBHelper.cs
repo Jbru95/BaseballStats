@@ -122,7 +122,7 @@ namespace BaseballStateBackEnd.Helpers
                     try
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new SqlParameter("@PlayerName", player.PlayerName)); // Use this to add parameters to call SP with
+                        cmd.Parameters.Add(new SqlParameter("@PlayerName", player.PlayerName));
                         cmd.Parameters.Add(new SqlParameter("@Description", player.PlayerDescription));
                         cmd.Parameters.Add(new SqlParameter("@Number", player.Number));
                         cmd.Parameters.Add(new SqlParameter("@Position", player.Position));
@@ -161,6 +161,43 @@ namespace BaseballStateBackEnd.Helpers
                         cmd.Parameters.Add(new SqlParameter("@ID", playerId));
 
                         rowsAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                conn.Close();
+            }
+            return rowsAffected;
+        }
+
+        public int ModifyPlayerViaSP(Player player)
+        {
+            int rowsAffected = 0;
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("sp_ModifyPlayer", conn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@ID", player.ID));
+                        cmd.Parameters.Add(new SqlParameter("@PlayerName", player.PlayerName));
+                        cmd.Parameters.Add(new SqlParameter("@Description", player.PlayerDescription));
+                        cmd.Parameters.Add(new SqlParameter("@Number", player.Number));
+                        cmd.Parameters.Add(new SqlParameter("@Position", player.Position));
+                        cmd.Parameters.Add(new SqlParameter("@WAR", player.WAR));
+                        cmd.Parameters.Add(new SqlParameter("@Average", player.Average));
+                        cmd.Parameters.Add(new SqlParameter("@Hits", player.Hits));
+                        cmd.Parameters.Add(new SqlParameter("@Homeruns", player.HomeRuns));
+                        cmd.Parameters.Add(new SqlParameter("@Walks", player.Walks));
+                        cmd.Parameters.Add(new SqlParameter("@OBP", player.OBP));
+                        cmd.Parameters.Add(new SqlParameter("@Slug", player.Slug));
+                        cmd.Parameters.Add(new SqlParameter("@OPS", player.OPS));
+
+                        rowsAffected = cmd.ExecuteNonQuery(); //Execute Stored Procedure with added Parameters
                     }
                     catch (Exception e)
                     {

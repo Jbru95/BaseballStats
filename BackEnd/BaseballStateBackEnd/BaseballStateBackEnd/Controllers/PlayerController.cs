@@ -8,7 +8,7 @@ using System.Web.Http;
 using BaseballStateBackEnd.Helpers;
 using System.Web.Http.Description;
 
-namespace BaseballStateBackEnd.Controllers
+namespace BaseballStateBackEnd.controller
 {
     public class PlayerController : ApiController
     {
@@ -49,6 +49,7 @@ namespace BaseballStateBackEnd.Controllers
             return player;
         }
 
+        [HttpPost]
         public HttpResponseMessage Post([FromBody] Player player)
         {
             DBHelper helper = new DBHelper();
@@ -87,6 +88,7 @@ namespace BaseballStateBackEnd.Controllers
             }
         }
 
+        [HttpDelete]
         public HttpResponseMessage Delete(int playerId)
         {
             DBHelper helper = new DBHelper();
@@ -119,6 +121,45 @@ namespace BaseballStateBackEnd.Controllers
                     new
                     {
                         playerId = playerId,
+                        rowsAffected = 0,
+                        errorMessage = e
+                    });
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage Update([FromBody] Player player)
+        {
+            DBHelper helper = new DBHelper();
+            try
+            {
+                int rowsAffected = helper.ModifyPlayerViaSP(player);
+                if (rowsAffected == 1)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK,
+                        new
+                        {
+                            player = player,
+                            rowsAffected = rowsAffected
+                        });
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError,
+                    new
+                    {
+                        player = player,
+                        rowsAffected = rowsAffected
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError,
+                    new
+                    {
+                        player = player,
                         rowsAffected = 0,
                         errorMessage = e
                     });

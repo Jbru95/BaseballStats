@@ -1,4 +1,4 @@
-﻿using BaseballStateBackEnd.Controllers;
+﻿using BaseballStateBackEnd.controller;
 using BaseballStateBackEnd.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -69,7 +69,23 @@ namespace BaseballStateBackEnd.Tests
         [TestMethod]
         public void UpdatePlayerTest()
         {
+            var controller = new PlayerController
+            {
+                Request = new System.Net.Http.HttpRequestMessage(),
+                Configuration = new HttpConfiguration()
+            };
 
+            List < Player > players = controller.Get(); //Get list of Players from DB
+            Player modifyPlayer = players[0]; //take the first player from the list
+            int playerHits = modifyPlayer.Hits; //save hits number
+
+            modifyPlayer.Hits += 10; //increment players hits by 10
+
+            controller.Update(modifyPlayer); //call controller update function with modified player data
+
+            int newHits = controller.Get()[0].Hits; //call controller get function to find players hits(should be the updated value)
+
+            Assert.AreEqual(newHits, playerHits + 10);
         }
     }
 }
