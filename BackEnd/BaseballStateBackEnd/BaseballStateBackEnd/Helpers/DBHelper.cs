@@ -36,33 +36,23 @@ namespace BaseballStateBackEnd.Helpers
                 // cmd.Parameters.Add(new SqlParameter("@Id", 2)); Use this to add parameters to call SP with
 
                 rdr = cmd.ExecuteReader();
-                while (rdr.Read()) {
+                while (rdr.Read())
+                {
                     Player player = new Player();
                     player.ID = (int)rdr[0];
                     player.PlayerName = rdr[1].ToString();
                     player.PlayerDescription = rdr[2].ToString();
                     player.Number = rdr[3].ToString();
                     player.Position = rdr[4].ToString();
-                    player.IsPitcher = (bool)rdr[5];
-                    player.WAR = (double)rdr[6];
-                    player.Average = (double)rdr[7];
-                    player.Hits = (int)rdr[8];
-                    player.HomeRuns = (int)rdr[9];
-                    player.Walks = (int)rdr[10];
-                    player.OBP = (double)rdr[11];
-                    player.Slug = (double)rdr[12];
-                    player.OPS = (double)rdr[13];
-                    player.ERA = (double)rdr[14];
-                    //player.OppAVG = (double)rdr[15];
-                    //player.KsPerNine = (double)rdr[16];
-                    //player.WalksPerNine = (double)rdr[17];
-                    //player.HomerunsPerNine = (double)rdr[18];
-                    //player.Whip = (double)rdr[19];
-                    //playersList.Add(new Player((int)rdr[0], rdr[1].ToString(), rdr[2].ToString(), rdr[3].ToString(), rdr[4].ToString(), (bool)rdr[5],
-                    //    (double)rdr[6], (double)rdr[7], (int)rdr[8], (int)rdr[9],
-                    //    (int)rdr[10], (double)rdr[11], (double)rdr[12], (double)rdr[13], (double)rdr[14], (double)rdr[15], (double)rdr[16],
-                    //    (double)rdr[17], (double)rdr[18], (double)rdr[19])
-                    //);
+                    player.WAR = (double)rdr[5];
+                    player.Average = (double)rdr[6];
+                    player.Hits = (int)rdr[7];
+                    player.HomeRuns = (int)rdr[8];
+                    player.Walks = (int)rdr[9];
+                    player.OBP = (double)rdr[10];
+                    player.Slug = (double)rdr[11];
+                    player.OPS = (double)rdr[12];
+
                     playersList.Add(player);
                 }
             }
@@ -78,19 +68,108 @@ namespace BaseballStateBackEnd.Helpers
             return playersList;
         }
 
-        Player GetPlayerFromSP()
+        public Player GetPlayerFromSP(int playerId)
         {
-            return null;
+            Player player = new Player();
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("sp_GetPlayerById", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id", playerId)); // Use this to add parameters to call SP with
+
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            rdr.Read();
+                            player.ID = (int)rdr[0];
+                            player.PlayerName = rdr[1].ToString();
+                            player.PlayerDescription = rdr[2].ToString();
+                            player.Number = rdr[3].ToString();
+                            player.Position = rdr[4].ToString();
+                            player.WAR = (double)rdr[5];
+                            player.Average = (double)rdr[6];
+                            player.Hits = (int)rdr[7];
+                            player.HomeRuns = (int)rdr[8];
+                            player.Walks = (int)rdr[9];
+                            player.OBP = (double)rdr[10];
+                            player.Slug = (double)rdr[11];
+                            player.OPS = (double)rdr[12];
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Failed to get Player Object by Id: " + playerId.ToString());
+                            return null;
+                        }
+
+                    }
+                    conn.Close();
+                }
+            }
+            return player;
         }
 
-        List<Player> GetAllPlayersFromQuery()
+        public int AddPlayerViaSP(Player player)
         {
-            return null;
+            int rowsAffected = 0;
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("sp_AddPlayer", conn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@PlayerName", player.PlayerName)); // Use this to add parameters to call SP with
+                        cmd.Parameters.Add(new SqlParameter("@Description", player.PlayerDescription));
+                        cmd.Parameters.Add(new SqlParameter("@Number", player.Number));
+                        cmd.Parameters.Add(new SqlParameter("@Position", player.Position));
+                        cmd.Parameters.Add(new SqlParameter("@WAR", player.WAR));
+                        cmd.Parameters.Add(new SqlParameter("@Average", player.Average));
+                        cmd.Parameters.Add(new SqlParameter("@Hits", player.Hits));
+                        cmd.Parameters.Add(new SqlParameter("@Homeruns", player.HomeRuns));
+                        cmd.Parameters.Add(new SqlParameter("@Walks", player.Walks));
+                        cmd.Parameters.Add(new SqlParameter("@OBP", player.OBP));
+                        cmd.Parameters.Add(new SqlParameter("@Slug", player.Slug));
+                        cmd.Parameters.Add(new SqlParameter("@OPS", player.OPS));
+
+                        rowsAffected = cmd.ExecuteNonQuery(); //Execute Stored Procedure with added Parameters
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                conn.Close();
+            }
+            return rowsAffected;
         }
 
-        Player GetPlayerFromQuery()
+        public int DeletePlayerViaSP(int playerId)
         {
-            return null;
+            int rowsAffected = 0;
+            using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("sp_DeletePlayer", conn))
+                {
+                    try
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@ID", playerId));
+
+                        rowsAffected = cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+                conn.Close();
+            }
+            return rowsAffected;
         }
     }
 }

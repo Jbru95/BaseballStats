@@ -62,7 +62,6 @@ C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBac
 C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.csproj.CopyComplete
 C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.dll
 C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.pdb
-C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.csprojAssemblyReference.cache
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\bin\BaseballStateBackEnd.dll.config
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\bin\BaseballStateBackEnd.dll
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\bin\BaseballStateBackEnd.pdb
@@ -128,3 +127,4 @@ C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStat
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.csproj.CopyComplete
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.dll
 C:\Projects\TestProjects\BaseballStats\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.pdb
+C:\Projects\BaseballStatsFullStack\BackEnd\BaseballStateBackEnd\BaseballStateBackEnd\obj\Debug\BaseballStateBackEnd.csprojAssemblyReference.cache
