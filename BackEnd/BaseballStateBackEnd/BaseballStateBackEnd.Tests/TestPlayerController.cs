@@ -23,7 +23,6 @@ namespace BaseballStateBackEnd.Tests
             var result = controller.Get() as List<Player>;
             Assert.AreNotEqual(0, result.Count);
             Assert.AreEqual(TestPlayersCount, result.Count);
-
         }
 
         [TestMethod]
@@ -63,7 +62,6 @@ namespace BaseballStateBackEnd.Tests
             int RowsCountAfterDelete = controller.Get().Count; //Count rows after the player was deleted
 
             Assert.AreEqual(RowsCountAfterDelete, InitialDBRowsCount); //rows after delete should be the same as initial row count
-
         }
 
         [TestMethod]
@@ -81,7 +79,7 @@ namespace BaseballStateBackEnd.Tests
 
             modifyPlayer.Hits += 10; //increment players hits by 10
 
-            controller.Update(modifyPlayer); //call controller update function with modified player data
+            controller.Put(modifyPlayer); //call controller update function with modified player data
 
             int newHits = controller.Get()[0].Hits; //call controller get function to find players hits(should be the updated value)
 

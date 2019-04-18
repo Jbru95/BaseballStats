@@ -19,8 +19,10 @@ namespace BaseballStateBackEnd.controller
         //Players.Add(new Player(5, "Steve Johnson", "goat", "24", null, false, 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 
         //GET: api/Player
+        [HttpGet]
         [ResponseType(typeof(List<Player>))]
         public List<Player> Get()
+
         {
             DBHelper helper = new DBHelper();
             List<Player> Players = new List<Player>();
@@ -30,7 +32,7 @@ namespace BaseballStateBackEnd.controller
             // return helper.GetAllPlayersFromSP();
             return Players;
         }
-
+        [HttpGet]
         //GET: api/Player/1
         public Player Get(int id)
         {
@@ -127,8 +129,8 @@ namespace BaseballStateBackEnd.controller
             }
         }
 
-        [HttpPost]
-        public HttpResponseMessage Update([FromBody] Player player)
+        [HttpPut]
+        public HttpResponseMessage Put([FromBody] Player player)
         {
             DBHelper helper = new DBHelper();
             try
